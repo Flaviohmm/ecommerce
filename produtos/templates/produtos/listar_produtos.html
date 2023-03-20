@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Lista de Produtos</h1>
+    <p><a href="{% url 'adicionar_produto' %}">Adicionar Produto</a></p>
+    {% for produto in produtos %}
+        <div>
+            <h2>{{ produto.nome }}</h2>
+            <p>{{ produto.descricao }}</p>
+            <p>Preço: R$ {{ produto.preco }}</p>
+            <p><a href="{% url 'editar_produto' produto.pk %}">Editar</a> | <a href="{% url 'excluir_produto' produto.pk %}">Excluir</a></p>
+        </div>
+    {% empty %}
+        <p>Nenhum produto encontrado.</p>
+    {% endfor %}
+{% endblock %}
